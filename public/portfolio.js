@@ -6,14 +6,13 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const scene = new THREE.Scene();
-const canvas = document.getElementById("webgl");
-const camera = new THREE.PerspectiveCamera(75, canvas.width/canvas.height, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#webgl'),
-});
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
 camera.position.set(0, -20, 5);
-renderer.setPixelRatio(canvas.width/canvas.height);
-renderer.setSize(canvas.width, canvas.height, false);
+renderer.setPixelRatio(window.innerWidth/window.innerHeight);
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.update();
 const pointlight = new THREE.PointLight(0xffffff);
