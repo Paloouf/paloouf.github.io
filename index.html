@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas class="webgl"></canvas>
+  <!-- Loading screen -->
+  
+  <div id="content" style="display:none;">
+    <canvas class="webgl"></canvas>
     <script type="importmap">
     {
       "imports": {
@@ -15,8 +18,18 @@
       "three/addons/": "https://unpkg.com/three@0.153.0/examples/jsm/"
       }
     }
-  </script>  
-  <script type="module" src="portfolio.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    </script>  
+    <script type="module" src="portfolio.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  </div>
+  <div class="loading-screen" id="loadingScreen">
+      <l-grid
+        size="75"
+        speed="1.5"
+        color="white" 
+      ></l-grid>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/grid.js"></script>
+      <p>Loading...</p>
+  </div>
 </body>
 </html>

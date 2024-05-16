@@ -20,14 +20,15 @@ clock = new THREE.Clock();
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
+
 document.body.appendChild( renderer.domElement );
 scene.background = new THREE.Color( 0xcccccc );
 scene.fog = new THREE.FogExp2( 0xcccccc, 0.03 );
 
 camera.position.set(-2, 2, -2);
-gsap.to(camera.position, {x:1,y:0,z:2, duration:4, ease: 'power2.out'});
+gsap.to(camera.position, {x:1,y:0,z:2, duration:7, ease: 'power2.out'});
 renderer.setPixelRatio(window.innerWidth/window.innerHeight);
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
@@ -56,6 +57,7 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+document.addEventListener("DOMContentLoaded", loadedPage());
 const gltfloader = new GLTFLoader();
 const car = new THREE.Group();
 gltfloader.load('models/fairlady.glb', function(gltf){
@@ -66,8 +68,10 @@ gltfloader.load('models/fairlady.glb', function(gltf){
     gltf.cameras; // Array<THREE.Camera>
     gltf.asset; // Object
     scene.add(car);
+    loadedPage();
     animate();
-});
+    });
+
 car.position.x -= 1.5;
 car.position.y -= 1;
 car.position.z -= 0.5;
@@ -101,3 +105,11 @@ function animate() {
     controls.update();
 }
 //animate();
+
+
+function loadedPage(){
+    setTimeout(function(){
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+    }, 2000);
+}
