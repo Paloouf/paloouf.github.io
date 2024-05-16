@@ -6,13 +6,16 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { GroundedSkybox } from './GroundedSkybox.js';
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 
-let composer, mixer, clock;
-
+let composer, mixer, clock, skybox;
+let debug = false;
 const params = {
     threshold: 0,
     strength: 0.05,
-    radius: 0,
+    height: 35,
+    radius: 500,
     exposure: 0.5
 };
 
@@ -24,11 +27,24 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
-scene.background = new THREE.Color( 0xcccccc );
-scene.fog = new THREE.FogExp2( 0xcccccc, 0.03 );
 
-camera.position.set(-2, 2, -2);
-gsap.to(camera.position, {x:1,y:0,z:2, duration:7, ease: 'power2.out'});
+const hdrLoader = new RGBELoader();
+const envMap = await hdrLoader.loadAsync( 'testpic.hdr' );
+envMap.mapping = THREE.EquirectangularReflectionMapping;
+
+skybox = new GroundedSkybox( envMap, params.height, params.radius );
+skybox.position.y = params.height - 0.01;
+scene.add( skybox );
+scene.environment = envMap;
+
+if (debug == false){
+    camera.position.set(-100, 50, -300);
+    gsap.to(camera.position, {x:1,y:19,z:60, duration:6, ease: 'power2.out'});
+}
+else{
+    camera.position.set(1, 19,60);
+}
+
 renderer.setPixelRatio(window.innerWidth/window.innerHeight);
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
@@ -37,16 +53,9 @@ controls.dampingFactor = 0.05;
 controls.screenSpacePanning = false;
 
 controls.minDistance = 2;
-controls.maxDistance = 10;
+controls.maxDistance = 100;
 
 controls.maxPolarAngle = Math.PI / 2;
-const dirLight1 = new THREE.DirectionalLight( 0xff00ff, 3 );
-dirLight1.position.set( 1, 1, 1 );
-scene.add( dirLight1 );
-
-const dirLight2 = new THREE.DirectionalLight( 0x0000ff, 3 );
-dirLight2.position.set( - 1, - 1, - 1 );
-scene.add( dirLight2 );
 const ambientLight = new THREE.AmbientLight(0x808080)
 scene.add( ambientLight);
 
@@ -58,30 +67,63 @@ window.addEventListener('resize', () => {
 });
 
 document.addEventListener("DOMContentLoaded", loadedPage());
+
 const gltfloader = new GLTFLoader();
 const car = new THREE.Group();
-gltfloader.load('models/fairlady.glb', function(gltf){
-    car.add(gltf.scene);
-    gltf.animations; // Array<THREE.AnimationClip>
-    gltf.scene; // THREE.Group
-    gltf.scenes; // Array<THREE.Group>
-    gltf.cameras; // Array<THREE.Camera>
-    gltf.asset; // Object
-    scene.add(car);
-    loadedPage();
-    animate();
+const car2 = new THREE.Group();
+const car3 = new THREE.Group();
+function carLoaders(){
+    gltfloader.load('models/fairlady.glb', function(gltf){
+        car.add(gltf.scene);
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Group
+        gltf.scenes; // Array<THREE.Group>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+        scene.add(car);
+        });
+    gltfloader.load('models/porsche.glb', function(gltf){
+        car2.add(gltf.scene);
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Group
+        gltf.scenes; // Array<THREE.Group>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+        scene.add(car2);
     });
+    gltfloader.load('models/m3.glb', function(gltf){
+        car3.add(gltf.scene);
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Group
+        gltf.scenes; // Array<THREE.Group>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+        scene.add(car3);
+        loadedPage();
+        animate();
+    });
+    car.position.set(-20.5, -8.5, -35.5);
+    car.scale.set(15,15,15);
+    car2.position.set(-35.5, 0, -0.5);
 
-car.position.x -= 1.5;
-car.position.y -= 1;
-car.position.z -= 0.5;
+    car2.scale.set(10,10,10);
+    car3.scale.set(10,10,10);
+    car2.rotateY(1);
+    car3.position.set(35.5,0, -0.5);
+    car3.rotateY(-1);
+}
+let carloaded = false;
+if (!carloaded){
+    carLoaders();
+    carloaded = true;
+}
 
 const renderScene = new RenderPass( scene, camera );
 
 const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5/5, 0.4/5, 0.8/5 );
 bloomPass.threshold = params.threshold;
 bloomPass.strength = params.strength;
-bloomPass.radius = params.radius;
+bloomPass.radius = 0;
 
 const outputPass = new OutputPass();
 
@@ -90,22 +132,11 @@ composer.addPass( renderScene );
 composer.addPass( bloomPass );
 composer.addPass( outputPass );
 
-const geometry = new THREE.BoxGeometry( 100, 1, 100 ); 
-const material = new THREE.MeshBasicMaterial( {color: 0x000000} ); 
-const cube = new THREE.Mesh( geometry, material ); 
-scene.add( cube );
-cube.position.y -= 1;
-
 function animate() {
     setTimeout( function() { requestAnimationFrame( animate ); }, 1000 / 60 );
-    //renderer.render(scene, camera);
-    //const delta = clock.getDelta();
-    //mixer.update(delta);
     composer.render();
     controls.update();
 }
-//animate();
-
 
 function loadedPage(){
     setTimeout(function(){
