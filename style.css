@@ -42,3 +42,54 @@ canvas{
   align-items: center;
   z-index: 9999;
 }
+
+
+#resumeBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: none; /* Initially hidden */
+  z-index: 9999;
+}
+
+#skills {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: none; /* Initially hidden */
+  z-index: 9999;
+}
+
+#projects {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: none; /* Initially hidden */
+  z-index: 9999;
+}
+
+
+#resumeBox.hidden {
+  display: none;
+}
+#skills.hidden {
+  display: none;
+}
+#projects.hidden {
+  display: none;
+}
