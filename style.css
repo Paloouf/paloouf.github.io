@@ -12,6 +12,12 @@ body {
   overflow: hidden !important;
 }
 
+h2{
+  text-align: center;
+  color:white;
+  font-family: 'Torchzilla';
+  font-size: xx-large;
+}
 
 p{
   color:white;
@@ -44,52 +50,37 @@ canvas{
 }
 
 
-#resumeBox {
+#resumeBox, #skills, #projects {
   position: absolute;
   top: 50%;
   left: 50%;
+  height: 90vh;
+  width: 70vw;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 20px;
-  border: 1px solid #000;
+  border: 1px solid #ffffff;
   border-radius: 10px;
+  overflow-y: auto;
   display: none; /* Initially hidden */
   z-index: 9999;
 }
 
-#skills {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border: 1px solid #000;
-  border-radius: 10px;
-  display: none; /* Initially hidden */
-  z-index: 9999;
-}
-
-#projects {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border: 1px solid #000;
-  border-radius: 10px;
-  display: none; /* Initially hidden */
-  z-index: 9999;
-}
-
-
-#resumeBox.hidden {
+#resumeBox, #skills, #projects
+.hidden {
   display: none;
 }
-#skills.hidden {
-  display: none;
+
+/* Webkit scrollbar styles */
+#resumeBox::-webkit-scrollbar, #skills::-webkit-scrollbar, #projects::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
 }
-#projects.hidden {
-  display: none;
+
+#resumeBox::-webkit-scrollbar-track, #skills::-webkit-scrollbar-track, #projects::-webkit-scrollbar-track {
+  background-color: #000000; /* Set the background color of the scrollbar track */
+}
+
+#resumeBox::-webkit-scrollbar-track, #skills::-webkit-scrollbar-track, #projects::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Set the border radius of the scrollbar thumb */
 }

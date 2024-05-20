@@ -18,7 +18,7 @@ const params = {
     threshold: 0,
     strength: 0.05,
     height: 35,
-    radius: 500,
+    radius: 300,
     exposure: 0.5
 };
 
@@ -29,19 +29,21 @@ clock = new THREE.Clock();
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-const renderer = new THREE.WebGLRenderer({antialias: true});
+const renderer = new THREE.WebGLRenderer({antialias: true, precision: 'highp'});
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
 
-const hdrLoader = new RGBELoader();
-const envMap = await hdrLoader.loadAsync( 'testpic1.hdr' );
-envMap.mapping = THREE.EquirectangularReflectionMapping;
+const garage = new THREE.BoxGeometry(400, 100,400);
+const garageMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.5,
+    side: THREE.DoubleSide,
+});const garageMesh = new THREE.Mesh(garage, garageMat);
+garageMesh.position.y += 50;
+scene.add(garageMesh);
 
-skybox = new GroundedSkybox( envMap, params.height, params.radius );
-skybox.position.y = params.height - 0.01;
-scene.add( skybox );
-scene.environment = envMap;
 
 if (debug == false){
     camera.position.set(-100, 50, -300);
@@ -62,8 +64,14 @@ controls.minDistance = 2;
 controls.maxDistance = 100;
 
 controls.maxPolarAngle = Math.PI / 2 - 0.1;
-const ambientLight = new THREE.AmbientLight(0x808080)
-scene.add( ambientLight);
+const ambientLight = new THREE.AmbientLight(0x808080);
+const pointLight = new THREE.PointLight(0xffffff);
+const dirLight1 = new THREE.DirectionalLight(0xff00ff, 0.5);
+const dirLight2 = new THREE.DirectionalLight(0x0000ff, 0.5);
+dirLight1.position.set(40,40,0);
+dirLight2.position.set(-40,40,0);
+pointLight.position.set(0,40,0);
+scene.add(pointLight,  dirLight1, dirLight2);//ambientLight,
 
 
 window.addEventListener('resize', () => {
@@ -110,7 +118,7 @@ function textLoaders(){
             size: 5,
             height: 2,
         });
-        const textMaterial = new THREE.MeshBasicMaterial({color: 0xff00ff});
+        const textMaterial = new THREE.MeshPhysicalMaterial({color: 0xff00ff});
         aboutMe = new THREE.Mesh(geo, textMaterial);
         skills = new THREE.Mesh(geo2, textMaterial);
         projects = new THREE.Mesh(geo3, textMaterial);
@@ -172,7 +180,7 @@ function createHitbox(object) {
 let carHitbox, car2Hitbox, car3Hitbox;
 
 function carLoaders(){
-    gltfloader.load('models/fairlady.glb', function(gltf){
+    gltfloader.load('models/ferrari.glb', function(gltf){
         car.add(gltf.scene);
         gltf.animations; // Array<THREE.AnimationClip>
         gltf.scene; // THREE.Group
@@ -184,7 +192,7 @@ function carLoaders(){
         carHitbox = createHitbox(car);
         carHitbox.name = 'car';
         });
-    gltfloader.load('models/porsche.glb', function(gltf){
+    gltfloader.load('models/gtr.glb', function(gltf){
         car2.add(gltf.scene);
         gltf.animations; // Array<THREE.AnimationClip>
         gltf.scene; // THREE.Group
@@ -196,7 +204,7 @@ function carLoaders(){
         car2Hitbox = createHitbox(car2);
         car2Hitbox.name = 'car2';
     });
-    gltfloader.load('models/m3.glb', function(gltf){
+    gltfloader.load('models/golf.glb', function(gltf){
         car3.add(gltf.scene);
         gltf.animations; // Array<THREE.AnimationClip>
         gltf.scene; // THREE.Group
@@ -210,11 +218,11 @@ function carLoaders(){
         loadedPage();
         animate();
     });
-    car.position.set(-20.5, -8.5, -35.5);
+    car.position.set(0, 0, -20);
     car.name = 'car';
     car2.name = 'car2';
     car3.name = 'car3';
-    car.scale.set(15,15,15);
+    car.scale.set(10,10,10);
     car2.position.set(-35.5, 0, -0.5);
 
     car2.scale.set(10,10,10);
@@ -231,7 +239,6 @@ if (!carloaded){
 
 //console.log(car, car2, car3);
 function zoomInOnCar(object) {
-    console.log(object);
     [car, car2, car3, skills, projects, aboutMe].forEach((c) => {
         if (c.name !== object.name) {
             c.visible = false;
