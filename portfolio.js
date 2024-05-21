@@ -13,12 +13,12 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 let composer, mixer, clock, skybox;
-let debug = true;
+let debug = false;
 const params = {
     threshold: 0,
     strength: 0.05,
-    height: 15,
-    radius: 200,
+    height: 25,
+    radius: 300,
     exposure: 0.5
 };
 
@@ -209,7 +209,7 @@ function carLoaders(){
         carHitbox = createHitbox(car);
         carHitbox.name = 'car';
         });
-    gltfloader.load('models/gtr.glb', function(gltf){
+    gltfloader.load('models/gt2.glb', function(gltf){
         car2.add(gltf.scene);
         gltf.animations; // Array<THREE.AnimationClip>
         gltf.scene; // THREE.Group
@@ -411,3 +411,44 @@ function loadedPage(){
         document.getElementById('content').style.display = 'block';
     }, 2000);
 }
+
+
+let currentImage;
+document.querySelectorAll('.parallax').forEach(image => {
+    image.addEventListener('mouseenter', (e) => {
+        currentImage = e.currentTarget;
+      image.addEventListener('mousemove', handleParallax);
+    });
+  
+    image.addEventListener('mouseleave', (e) => {
+      image.removeEventListener('mousemove', handleParallax);
+      image.style.transform = 'rotateY(0deg) rotateX(0deg)'; // Reset transform
+    });
+  });
+  
+  let timeout;
+  function handleParallax(e) {
+    if (timeout) {
+      cancelAnimationFrame(timeout);
+    }
+    timeout = requestAnimationFrame(() => {
+      if (!currentImage) {
+        console.error('Image is null');
+        return; // Safety check to prevent null error
+      }
+      const rect = currentImage.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+  
+      const rotateY = x * 30; // Adjust the 20 for desired rotation intensity
+      const rotateX = y * -30; // Adjust the 20 for desired rotation intensity
+  
+      currentImage.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+    });
+  }
+  
+  document.querySelectorAll('.flip-container').forEach(container => {
+    container.addEventListener('click', () => {
+      container.classList.toggle('flipped'); // Toggle flipped class on click
+    });
+  });

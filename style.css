@@ -80,7 +80,6 @@ canvas{
   margin: 0;
   padding: 10px;
   color: #ff00ff;
-  text-shadow: 0 0 6px #ffffff; /* Glowing text */
 }
 
 /* Webkit scrollbar styles */
@@ -146,7 +145,7 @@ canvas{
 }
 
 #resumeBox p {
-  flex: 1; /* Allow the paragraph to take up the remaining space */
+  /* flex: 1; Allow the paragraph to take up the remaining space */
   font-family: 'Krona One'; /* Retro font */
   font-size: 1.2rem;
   color: #fff;
@@ -185,4 +184,64 @@ canvas{
 
 a {
   color: rgb(255, 0, 242);
+}
+
+#contact p{
+  color: rgb(255, 0, 255);
+  font-family: 'Torchzilla';
+  font-size: 2.7rem;
+}
+/* Define the style for the image container */
+/* .parallax {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* Define the style for the image with a glowing effect */
+.glow {
+  display: block;
+  width: 300px; /* Adjust the width as needed */
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 0 20px rgba(0, 134, 22, 0.7), 0 0 40px rgba(0, 197, 33, 0.5), 0 0 60px rgba(0, 126, 38, 0.3); /* Glowing effect */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the glowing effect */
+  transform: rotateY(0deg) rotateX(0deg); /* Initial transform for the parallax effect */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out; /* Smooth transition for the parallax and glowing effects */
+}
+
+/* Add a hover effect to intensify the glow */
+.glow:hover {
+  box-shadow: 0 0 30px rgba(255, 0, 127, 0.9), 0 0 50px rgba(255, 0, 127, 0.7), 0 0 70px rgba(255, 0, 127, 0.5); /* Intensified glowing effect */
+}
+
+.flip-container {
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.flipper {
+  /* position: relative; */
+  width: 200px; /* Adjust size as needed */
+  height: 200px; /* Adjust size as needed */
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flipped .flipper {
+  transform: rotateY(180deg); /* Flip when container has flipped class */
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide the backface of the elements */
+}
+
+.front {
+  z-index: 2; /* Front side is initially visible */
+}
+
+.back {
+  transform: rotateY(180deg); /* Initially hidden by rotation */
 }
