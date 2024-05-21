@@ -13,12 +13,12 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 let composer, mixer, clock, skybox;
-let debug = false;
+let debug = true;
 const params = {
     threshold: 0,
     strength: 0.05,
-    height: 35,
-    radius: 300,
+    height: 15,
+    radius: 200,
     exposure: 0.5
 };
 
@@ -34,15 +34,26 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
 
-const garage = new THREE.BoxGeometry(400, 100,400);
-const garageMat = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
-    transparent: true,
-    opacity: 0.5,
-    side: THREE.DoubleSide,
-});const garageMesh = new THREE.Mesh(garage, garageMat);
-garageMesh.position.y += 50;
-scene.add(garageMesh);
+const hdrLoader = new RGBELoader();
+const envMap = await hdrLoader.loadAsync( 'neonbrig_resize.hdr' );
+envMap.mapping = THREE.EquirectangularReflectionMapping;
+
+skybox = new GroundedSkybox( envMap, params.height, params.radius );
+skybox.position.y = params.height - 0.01;
+scene.add( skybox );
+scene.environment = envMap;
+
+
+
+// const garage = new THREE.BoxGeometry(400, 100,400);
+// const garageMat = new THREE.MeshStandardMaterial({
+//     color: 0xffffff,
+//     transparent: true,
+//     opacity: 0.5,
+//     side: THREE.DoubleSide,
+// });const garageMesh = new THREE.Mesh(garage, garageMat);
+// garageMesh.position.y += 50;
+// scene.add(garageMesh);
 
 
 if (debug == false){
@@ -66,12 +77,16 @@ controls.maxDistance = 100;
 controls.maxPolarAngle = Math.PI / 2 - 0.1;
 const ambientLight = new THREE.AmbientLight(0x808080);
 const pointLight = new THREE.PointLight(0xffffff);
-const dirLight1 = new THREE.DirectionalLight(0xff00ff, 0.5);
-const dirLight2 = new THREE.DirectionalLight(0x0000ff, 0.5);
-dirLight1.position.set(40,40,0);
-dirLight2.position.set(-40,40,0);
+const dirLight1 = new THREE.DirectionalLight(0x00ff00, 0.5);
+const dirLight2 = new THREE.DirectionalLight(0x00ff00, 0.5);
+const dirLight3 = new THREE.DirectionalLight(0xffffff, 0.5);
+const dirLight4 = new THREE.DirectionalLight(0xffffff, 0.5);
+dirLight1.position.set(40,40,20);
+dirLight2.position.set(40,40,-20);
+dirLight3.position.set(40,40,-100);
+dirLight4.position.set(40,40,100);
 pointLight.position.set(0,40,0);
-scene.add(pointLight,  dirLight1, dirLight2);//ambientLight,
+scene.add(  dirLight1, dirLight2, dirLight3, dirLight4);//ambientLight,pointLight,
 
 
 window.addEventListener('resize', () => {

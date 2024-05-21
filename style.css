@@ -61,13 +61,13 @@ canvas{
   height: 90vh;
   width: 70vw;
   transform: translate(-50%, -50%);
-  background: linear-gradient(145deg, rgba(255, 0, 127, 0.8), rgba(255, 140, 0, 0.8)); /* Vibrant gradient */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 10px #ff007f; /* Neon shadow */
+  background: linear-gradient(145deg, rgba(0, 10, 4, 0.6), rgba(0, 95, 29, 0.6)); /* Vibrant gradient */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 10px #00ac2b; /* Neon shadow */
   text-align: center;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  border: 1px solid #ffffff;
+  border: 1px solid #00a700;
   border-radius: 10px;
   overflow-y: auto;
   display: none; /* Initially hidden */
@@ -76,11 +76,11 @@ canvas{
 
 #resumeBox h2, #skills h2, #projects h2 {
   font-family: 'Torchzilla'; /* Retro font */
-  font-size: 2.5rem;
+  font-size: 4rem;
   margin: 0;
   padding: 10px;
-  color: #fff;
-  text-shadow: 0 0 6px #000000; /* Glowing text */
+  color: #ff00ff;
+  text-shadow: 0 0 6px #ffffff; /* Glowing text */
 }
 
 /* Webkit scrollbar styles */
@@ -93,12 +93,12 @@ canvas{
 }
 
 #resumeBox::-webkit-scrollbar-thumb, #skills::-webkit-scrollbar-thumb, #projects::-webkit-scrollbar-thumb {
-  background: #ff007f; /* Vibrant scrollbar */
+  background: #00a700; /* Vibrant scrollbar */
   border-radius: 10px;
 }
 
 #resumeBox:hover, #projects:hover, #skills:hover {
-  box-shadow: 0 6px 35px rgba(0, 0, 0, 0.2), 0 0 15px #ff007f;
+  box-shadow: 0 6px 35px rgba(0, 0, 0, 0.2), 0 0 15px #00a700;
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -121,7 +121,35 @@ canvas{
 }
 
 #resumeBox ul li:hover, #skills ul li:hover, #projects ul li:hover {
-  border-color: #ff007f; /* Highlight on hover */
+  border-color: #00a700; /* Highlight on hover */
+}
+
+#resumeBox .content {
+  display: flex;
+  align-items: center; /* Align items vertically centered */
+  justify-content: center; /* Center the content horizontally */
+  text-align: left; /* Ensure text is aligned to the left */
+}
+
+#resumeBox img {
+  margin-right: 20px; /* Space between the image and the text */
+  max-width: 15vw; /* Limit the width of the image */
+  border-radius: 10px; /* Optional: Rounded corners for the image */
+  text-shadow: 0 0 6px #00c030; /* Glowing text */
+}
+
+#resumeBox .pepo img {
+  margin-right: 20px; /* Space between the image and the text */
+  max-width: 20vw; /* Limit the width of the image */
+  border-radius: 10px; /* Optional: Rounded corners for the image */
+  text-shadow: 0 0 6px #00c030; /* Glowing text */
+}
+
+#resumeBox p {
+  flex: 1; /* Allow the paragraph to take up the remaining space */
+  font-family: 'Krona One'; /* Retro font */
+  font-size: 1.2rem;
+  color: #fff;
 }
 
 .skills-container {
@@ -139,7 +167,6 @@ canvas{
   margin-top: 10px;
   padding: 10px;
   border: 0px solid #ccc;
-  /* background-color: #f9f9f9; */
   text-align: center;
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease;
@@ -157,5 +184,5 @@ canvas{
 }
 
 a {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 0, 242);
 }
