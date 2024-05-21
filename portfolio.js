@@ -118,7 +118,7 @@ function textLoaders(){
             size: 5,
             height: 2,
         });
-        const textMaterial = new THREE.MeshPhysicalMaterial({color: 0xff00ff});
+        const textMaterial = new THREE.MeshBasicMaterial({color: 0xff00ff});
         aboutMe = new THREE.Mesh(geo, textMaterial);
         skills = new THREE.Mesh(geo2, textMaterial);
         projects = new THREE.Mesh(geo3, textMaterial);
@@ -153,6 +153,8 @@ function updateTextRotation() {
         projects.lookAt(camera.position);
     }
 }
+
+
 
 function createHitbox(object) {
     // Compute the bounding box of the object
@@ -333,7 +335,7 @@ window.addEventListener('mousedown', (event) => {
     const resumeBox = document.getElementById('resumeBox');
     const skillBox = document.getElementById('skills');
     const projectBox = document.getElementById('projects');
-    if ((!resumeBox.contains(event.target) || !skillBox.contains(event.target) || !projectBox.contains(event.target)) && rotating) {
+    if ((!resumeBox.contains(event.target) && !skillBox.contains(event.target) && !projectBox.contains(event.target)) && rotating) {
         resumeBox.style.display = 'none';
         skillBox.style.display = 'none';
         projectBox.style.display = 'none';

@@ -12,6 +12,10 @@ body {
   overflow: hidden !important;
 }
 
+.loader{
+  font-family: 'Torchzilla';
+}
+
 h2{
   text-align: center;
   color:white;
@@ -21,7 +25,7 @@ h2{
 
 p{
   color:white;
-  font-family: 'Torchzilla';
+  font-family: 'Krona One';
   font-size: xx-large;
 }
 
@@ -49,15 +53,19 @@ canvas{
   z-index: 9999;
 }
 
-
 #resumeBox, #skills, #projects {
+  display:flex;
   position: absolute;
   top: 50%;
   left: 50%;
   height: 90vh;
   width: 70vw;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(145deg, rgba(255, 0, 127, 0.8), rgba(255, 140, 0, 0.8)); /* Vibrant gradient */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 10px #ff007f; /* Neon shadow */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   border: 1px solid #ffffff;
   border-radius: 10px;
@@ -66,21 +74,88 @@ canvas{
   z-index: 9999;
 }
 
-#resumeBox, #skills, #projects
-.hidden {
-  display: none;
+#resumeBox h2, #skills h2, #projects h2 {
+  font-family: 'Torchzilla'; /* Retro font */
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 10px;
+  color: #fff;
+  text-shadow: 0 0 6px #000000; /* Glowing text */
 }
 
 /* Webkit scrollbar styles */
 #resumeBox::-webkit-scrollbar, #skills::-webkit-scrollbar, #projects::-webkit-scrollbar {
-  width: 10px; /* Set the width of the scrollbar */
+  width: 8px; /* Set the width of the scrollbar */
 }
 
 #resumeBox::-webkit-scrollbar-track, #skills::-webkit-scrollbar-track, #projects::-webkit-scrollbar-track {
   background-color: #000000; /* Set the background color of the scrollbar track */
 }
 
-#resumeBox::-webkit-scrollbar-track, #skills::-webkit-scrollbar-track, #projects::-webkit-scrollbar-thumb {
-  background-color: #888; /* Set the color of the scrollbar thumb */
-  border-radius: 5px; /* Set the border radius of the scrollbar thumb */
+#resumeBox::-webkit-scrollbar-thumb, #skills::-webkit-scrollbar-thumb, #projects::-webkit-scrollbar-thumb {
+  background: #ff007f; /* Vibrant scrollbar */
+  border-radius: 10px;
+}
+
+#resumeBox:hover, #projects:hover, #skills:hover {
+  box-shadow: 0 6px 35px rgba(0, 0, 0, 0.2), 0 0 15px #ff007f;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+#resumeBox ul, #skills ul, #projects ul {
+  list-style: none;
+  padding: 0;
+}
+
+#resumeBox ul li, #skills ul li, #projects ul li {
+  font-family: 'Krona One'; /* Retro font */
+  font-size: 1.2rem;
+  color: #fff;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Transparent border bottom */
+  transition: border-color 0.3s ease-in-out;
+}
+
+#resumeBox ul li:last-child, #skills ul li:last-child, #projects ul li:last-child {
+  border-bottom: none; /* Remove border bottom from the last item */
+}
+
+#resumeBox ul li:hover, #skills ul li:hover, #projects ul li:hover {
+  border-color: #ff007f; /* Highlight on hover */
+}
+
+.skills-container {
+  text-align: center;
+}
+
+.skill-item {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 0px solid #ddd;
+}
+
+.info-box {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  border: 0px solid #ccc;
+  /* background-color: #f9f9f9; */
+  text-align: center;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.skill-item:hover .info-box {
+  display: block;
+  max-height: 200px; /* Set the maximum height to accommodate content */
+  opacity: 1; /* Make the div fully visible */
+}
+
+.info-box p{
+  text-align: center;
+  font-size: 1rem;
+}
+
+a {
+  color: rgb(0, 0, 0);
 }

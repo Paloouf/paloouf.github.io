@@ -5,16 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paloouf's Car Shop</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="resumeBox" class="hidden">
-    <h2>My Resume</h2>
-    <p>Insert your resume details here...</p>
+    <h2>About Me</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident iste necessitatibus vel ut fugiat accusamus. Fugiat reprehenderit provident officiis amet alias aperiam quisquam, doloremque, recusandae impedit ab sunt molestias sequi.</p>
   </div>
-  <div id="skills" class="hidden">
-    <h2>My Skills</h2>
-    <p>Insert your resume details here...</p>
+  <div id="skills" class="skills-container">
+    <h2>Technologies</h2>
+    <ul>
+      <li class="skill-item" data-info="info1">C
+        <div class="info-box" id="info1">
+          <p>3D Game project at School 42: <a href="https://github.com/Paloouf/Cub3D" target="_blank">Cub3D</a>.</p>
+        </div>
+      </li>
+      <li class="skill-item" data-info="info2">C++
+        <div class="info-box" id="info2">
+          <p>Parser project in <a href="https://github.com/Paloouf/scop" target="_blank">C++</a> for .obj files to render in OpenGL.</p>
+        </div>
+      </li>
+      <li class="skill-item" data-info="info3">JavaScript
+        <div class="info-box" id="info3">
+          <p>Website project at School 42 with 4 teammates using <a href="https://github.com/CartelGames/ft_transcendence" target="_blank">JavaScript</a> and Three.js.</p>
+        </div>
+      </li>
+      <li class="skill-item" data-info="info4">Three.js
+        <div class="info-box" id="info4">
+          <p>This website is mostly made using <a href="https://threejs.org">Three.js</a>! Hope you enjoy it 😉</p>
+        </div>
+      </li>
+      <li class="skill-item" data-info="info5">Git and Github
+        <div class="info-box" id="info5">
+          <p>Go take a look at <a href="https://github.com/Paloouf" target="_blank">my profile</a>!😉</p>
+        </div>
+      </li>
+      <li class="skill-item" data-info="info6">Docker
+        <div class="info-box" id="info6">
+          <p>Website project at School 42 with 4 teammates using <a href="https://github.com/CartelGames/ft_transcendence" target="_blank">Docker</a> to deploy as an app.</p>
+        </div>
+      </li>
+      <li class="skill-item" data-info="info7">OpenGL
+        <div class="info-box" id="info7">
+          <p>Parser project in C++ for .obj files to render in <a href="https://github.com/Paloouf/scop" target="_blank">OpenGL</a>.</p>
+        </div>
+      </li>
+    </ul>
+    <h2>Languages</h2>
+      <ul>
+        <li>Fluent in English</li>
+        <li>French (mother tongue)</li>
+      </ul>
+    <h2>Additional Skills</h2>
+      <ul>
+        <li class="skill-item" data-info="info9">English to French Translation
+          <div class="info-box" id="info9">
+            <p>My previous professional experience in PTW had me translate and bug test languages for various AAA Games</a>.</p>
+          </div>
+        </li>
+        <li class="skill-item" data-info="info10">Team Management
+          <div class="info-box" id="info10">
+            <p>My Senior position at PTW meant I had to oversee a small team of testers during projects</a>.</p>
+          </div>
+        </li>
+      </ul>
   </div>
+</div>
   <div id="projects" class="hidden">
     <h2>My Projects</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente optio delectus ex atque iusto tempore nemo voluptate! A voluptatem quia rerum aspernatur magni debitis ab veniam eius nisi, recusandae soluta.</p>
@@ -47,7 +106,7 @@
         color="white" 
       ></l-grid>
       <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/grid.js"></script>
-      <p>Loading...</p>
+      <p class="loader">Loading...</p>
   </div>
   
 </body>
