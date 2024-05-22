@@ -399,7 +399,7 @@ composer.addPass( bloomPass );
 composer.addPass( outputPass );
 
 function animate() {
-    setTimeout( function() { requestAnimationFrame( animate ); }, 1000 / 60 );
+    requestAnimationFrame( animate );
     updateTextRotation();
     composer.render();
     controls.update();
@@ -409,7 +409,7 @@ function loadedPage(){
     setTimeout(function(){
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-    }, 2000);
+    }, 0);
 }
 
 

@@ -128,18 +128,19 @@ canvas{
   align-items: center; /* Align items vertically centered */
   justify-content: center; /* Center the content horizontally */
   text-align: left; /* Ensure text is aligned to the left */
+  gap:20px;
 }
 
 #resumeBox img {
   margin-right: 20px; /* Space between the image and the text */
-  max-width: 15vw; /* Limit the width of the image */
+  max-width: 11vw; /* Limit the width of the image */
   border-radius: 10px; /* Optional: Rounded corners for the image */
   text-shadow: 0 0 6px #00c030; /* Glowing text */
 }
 
 #resumeBox .pepo img {
   margin-right: 20px; /* Space between the image and the text */
-  max-width: 20vw; /* Limit the width of the image */
+  max-width: 11vw; /* Limit the width of the image */
   border-radius: 10px; /* Optional: Rounded corners for the image */
   text-shadow: 0 0 6px #00c030; /* Glowing text */
 }
@@ -149,6 +150,7 @@ canvas{
   font-family: 'Krona One'; /* Retro font */
   font-size: 1.2rem;
   color: #fff;
+  max-width: 70%;
 }
 
 .skills-container {
@@ -187,9 +189,14 @@ a {
 }
 
 #contact p{
+  display:block;
+  margin:auto;
   color: rgb(255, 0, 255);
   font-family: 'Torchzilla';
   font-size: 2.7rem;
+  margin-top:2rem;
+  align-items: center !important;
+  text-align: center;
 }
 /* Define the style for the image container */
 /* .parallax {
@@ -244,4 +251,27 @@ a {
 
 .back {
   transform: rotateY(180deg); /* Initially hidden by rotation */
+}
+
+#contact {
+  display:block;
+  margin:auto;
+  align-items: center;
+  gap:10px;
+}
+.social {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between social icons */
+  margin-left: auto;
+}
+
+.social-logo {
+  width: 50px; /* Adjust the size of the icons as needed */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.social-logo:hover {
+  transform: scale(1.1); /* Slightly increase the size on hover */
 }
