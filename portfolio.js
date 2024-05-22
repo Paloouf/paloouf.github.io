@@ -12,7 +12,7 @@ import { TTFLoader } from 'three/addons/loaders/TTFLoader.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
-let composer, mixer, clock, skybox;
+let composer, clock, skybox;
 let debug = false;
 const params = {
     threshold: 0,
@@ -22,59 +22,54 @@ const params = {
     exposure: 0.5
 };
 
+//Initial setup
 let ttfloader = new TTFLoader();
 let fontloader = new FontLoader();
-
 clock = new THREE.Clock();
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const renderer = new THREE.WebGLRenderer({antialias: true, precision: 'highp'});
 renderer.setSize( window.innerWidth, window.innerHeight );
-
+renderer.setPixelRatio(window.innerWidth/window.innerHeight);
 document.body.appendChild( renderer.domElement );
 
-const hdrLoader = new RGBELoader();
-const envMap = await hdrLoader.loadAsync( 'neonbrig_resize.hdr' );
-envMap.mapping = THREE.EquirectangularReflectionMapping;
+let assetCount = 0;
+let totalAsset =5;
 
+
+//GroundedSkybox
+const hdrLoader = new RGBELoader();
+const envMap =  hdrLoader.load( 'neonbrig_resize.hdr', function(){checkProgress()} );
+envMap.mapping = THREE.EquirectangularReflectionMapping;
 skybox = new GroundedSkybox( envMap, params.height, params.radius );
 skybox.position.y = params.height - 0.01;
 scene.add( skybox );
 scene.environment = envMap;
 
 
-
-// const garage = new THREE.BoxGeometry(400, 100,400);
-// const garageMat = new THREE.MeshStandardMaterial({
-//     color: 0xffffff,
-//     transparent: true,
-//     opacity: 0.5,
-//     side: THREE.DoubleSide,
-// });const garageMesh = new THREE.Mesh(garage, garageMat);
-// garageMesh.position.y += 50;
-// scene.add(garageMesh);
-
-
+//Camera setup animation
 if (debug == false){
-    camera.position.set(-100, 50, -300);
+    camera.position.set(-100, 50, -150);
     gsap.to(camera.position, {x:1,y:19,z:60, duration:6, ease: 'power2.out'});
 }
 else{
     camera.position.set(1, 19,60);
 }
 
-renderer.setPixelRatio(window.innerWidth/window.innerHeight);
+
+
+
+//Controls
 const controls = new OrbitControls( camera, renderer.domElement );
-controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-
 controls.screenSpacePanning = false;
-
 controls.minDistance = 2;
 controls.maxDistance = 100;
-
 controls.maxPolarAngle = Math.PI / 2 - 0.1;
+
+
+//Lights
 const ambientLight = new THREE.AmbientLight(0x808080);
 const pointLight = new THREE.PointLight(0xffffff);
 const dirLight1 = new THREE.DirectionalLight(0x00ff00, 0.5);
@@ -88,21 +83,17 @@ dirLight4.position.set(40,40,100);
 pointLight.position.set(0,40,0);
 scene.add(  dirLight1, dirLight2, dirLight3, dirLight4);//ambientLight,pointLight,
 
-
+//Resizing
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+//Asset loading
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 let resumeBoxDisplayed = false;
-
-
-
-document.addEventListener("DOMContentLoaded", loadedPage());
-
 const gltfloader = new GLTFLoader();
 const car = new THREE.Group();
 const car2 = new THREE.Group();
@@ -152,6 +143,7 @@ function textLoaders(){
         skillsGrp.add(skills);
         projectsGrp.add(projects);
         aboutMeGrp.add(aboutMe);
+        checkProgress();
         scene.add(aboutMeGrp, skillsGrp, projectsGrp);
     })
 }
@@ -181,21 +173,19 @@ function createHitbox(object) {
 
     // Create an invisible mesh using the box dimensions
     const geometry = new THREE.BoxGeometry(size.x, size.y, size.z);
-    const material = new THREE.MeshBasicMaterial({ visible: false }); // Invisible material
+    const material = new THREE.MeshBasicMaterial({ visible: false });
     const mesh = new THREE.Mesh(geometry, material);
 
     // Position the mesh at the center of the bounding box
     const center = box.getCenter(new THREE.Vector3());
     mesh.position.copy(center);
 
-    // Add the mesh to the scene
     scene.add(mesh);
 
     return mesh;
 }
 
 let carHitbox, car2Hitbox, car3Hitbox;
-
 function carLoaders(){
     gltfloader.load('models/ferrari.glb', function(gltf){
         car.add(gltf.scene);
@@ -208,6 +198,7 @@ function carLoaders(){
         scene.add(car);
         carHitbox = createHitbox(car);
         carHitbox.name = 'car';
+        checkProgress();
         });
     gltfloader.load('models/gt2.glb', function(gltf){
         car2.add(gltf.scene);
@@ -220,6 +211,7 @@ function carLoaders(){
         scene.add(car2);
         car2Hitbox = createHitbox(car2);
         car2Hitbox.name = 'car2';
+        checkProgress();
     });
     gltfloader.load('models/golf.glb', function(gltf){
         car3.add(gltf.scene);
@@ -232,8 +224,7 @@ function carLoaders(){
         scene.add(car3);
         car3Hitbox = createHitbox(car3);
         car3Hitbox.name = 'car3';
-        loadedPage();
-        animate();
+        checkProgress();
     });
     car.position.set(0, 0, -20);
     car.name = 'car';
@@ -241,7 +232,6 @@ function carLoaders(){
     car3.name = 'car3';
     car.scale.set(10,10,10);
     car2.position.set(-35.5, 0, -0.5);
-
     car2.scale.set(10,10,10);
     car3.scale.set(10,10,10);
     car2.rotateY(1);
@@ -269,8 +259,8 @@ function zoomInOnCar(object) {
     gsap.to(camera.position, {
         duration: 1,
         x: center.x + 30 * Math.cos(0),
-        y: center.y + 10, // Adjust this value to position the camera above the car
-        z: center.z + 30 * Math.sin(0), // Adjust this value to position the camera in front of the car
+        y: center.y + 10, 
+        z: center.z + 30 * Math.sin(0), 
         onUpdate: function () {
             camera.lookAt(center);
         },
@@ -383,21 +373,19 @@ function onMouseClick(event) {
 
 window.addEventListener('mousedown', onMouseClick, true);
 
-
+//Composer setup
 const renderScene = new RenderPass( scene, camera );
-
 const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5/5, 0.4/5, 0.8/5 );
 bloomPass.threshold = params.threshold;
 bloomPass.strength = params.strength;
 bloomPass.radius = 0;
-
 const outputPass = new OutputPass();
-
 composer = new EffectComposer( renderer );
 composer.addPass( renderScene );
 composer.addPass( bloomPass );
 composer.addPass( outputPass );
 
+//Most important function
 function animate() {
     requestAnimationFrame( animate );
     updateTextRotation();
@@ -405,50 +393,60 @@ function animate() {
     controls.update();
 }
 
-function loadedPage(){
-    setTimeout(function(){
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    }, 0);
-}
-
-
+//Parallax effect on aboutMe images
 let currentImage;
 document.querySelectorAll('.parallax').forEach(image => {
     image.addEventListener('mouseenter', (e) => {
         currentImage = e.currentTarget;
-      image.addEventListener('mousemove', handleParallax);
+        image.addEventListener('mousemove', handleParallax);
     });
-  
+
     image.addEventListener('mouseleave', (e) => {
-      image.removeEventListener('mousemove', handleParallax);
-      image.style.transform = 'rotateY(0deg) rotateX(0deg)'; // Reset transform
+        image.removeEventListener('mousemove', handleParallax);
+        image.style.transform = 'rotateY(0deg) rotateX(0deg)'; // Reset transform
     });
-  });
-  
-  let timeout;
-  function handleParallax(e) {
+});
+
+
+
+let timeout;
+function handleParallax(e) {
     if (timeout) {
-      cancelAnimationFrame(timeout);
+        cancelAnimationFrame(timeout);
     }
     timeout = requestAnimationFrame(() => {
-      if (!currentImage) {
+        if (!currentImage) {
         console.error('Image is null');
         return; // Safety check to prevent null error
-      }
-      const rect = currentImage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-  
-      const rotateY = x * 30; // Adjust the 20 for desired rotation intensity
-      const rotateX = y * -30; // Adjust the 20 for desired rotation intensity
-  
-      currentImage.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+        }
+        const rect = currentImage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        const rotateY = x * 30;
+        const rotateX = y * -30; 
+
+        currentImage.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
     });
-  }
-  
-  document.querySelectorAll('.flip-container').forEach(container => {
-    container.addEventListener('click', () => {
-      container.classList.toggle('flipped'); // Toggle flipped class on click
-    });
-  });
+}
+
+//EasterEgg
+document.querySelectorAll('.flip-container').forEach(container => {
+container.addEventListener('click', () => {
+    container.classList.toggle('flipped');
+});
+});
+
+//LoadingChecks
+function checkProgress(){
+    assetCount++;
+    if (assetCount >= totalAsset)
+        loadingComplete();
+}
+
+function loadingComplete(){
+    //console.log('assets loaded');
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    animate();
+}
