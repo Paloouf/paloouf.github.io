@@ -46,11 +46,20 @@ skybox.position.y = params.height - 0.01;
 scene.add( skybox );
 scene.environment = envMap;
 
+function disableRotate() {
+    controls.enableRotate = false;
+}
+
+// Function to enable rotation
+function enableRotate() {
+    controls.enableRotate = true;
+}
+
 
 //Camera setup animation
 if (debug == false){
     camera.position.set(-100, 50, -150);
-    gsap.to(camera.position, {x:1,y:19,z:60, duration:6, ease: 'power2.out'});
+    gsap.to(camera.position, {x:1,y:19,z:60, duration:6, ease: 'power2.out', onStart:disableRotate, onComplete:enableRotate});
 }
 else{
     camera.position.set(1, 19,60);
@@ -67,6 +76,8 @@ controls.screenSpacePanning = false;
 controls.minDistance = 2;
 controls.maxDistance = 100;
 controls.maxPolarAngle = Math.PI / 2 - 0.1;
+controls.enableZoom = false;
+controls.enablePan = false;
 
 
 //Lights
@@ -261,12 +272,15 @@ function zoomInOnCar(object) {
         x: center.x + 30 * Math.cos(0),
         y: center.y + 10, 
         z: center.z + 30 * Math.sin(0), 
+        onStart:disableRotate,
         onUpdate: function () {
             camera.lookAt(center);
         },
         onComplete: function () {
+            enableRotate();
             rotateAroundCar(center);
-        }
+        },
+        
     });
 
     // Show the text box with resume information
@@ -322,7 +336,7 @@ function rotateAroundCar(center) {
 function stopRotation() {
     rotating = false;
     gsap.killTweensOf(camera.position);
-    gsap.to(camera.position, {x:1,y:19,z:60, duration:1, ease: 'power2.out'});
+    gsap.to(camera.position, {x:1,y:19,z:60, duration:1, ease: 'power2.out',onStart:disableRotate, onComplete:enableRotate});
 }
 
 
