@@ -3,127 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paloouf's Car Shop</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Loïc Tressens</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="resumeBox" class="hidden">
-    <h2>About Me</h2>
-    <div class="content">
-      <img src="./img/lolo1.webp" alt="Loïc's photo" class="glow parallax" loading="lazy">
-      <p>My name is Loïc, I'm 27 and currently looking for a job as a Developer. I'd really enjoy working in the video game industry or for the dynamic fields of automotive and aerospace engineering, from racing teams to car and plane manufacturers.
-        I went through an Economy and Management Master to realise selling things wasn't my thing and decided I'd take a gap year in the UK. I started working for a cool company that does Localisation and Quality Assurance for video games, among other things.</p>
-    </div>
-    <div class="content">
-      <p>I've had a blast testing games and fixing linguistic bugs, discussing with the devs to find the best approach on how to solve issues. I then came back and found out a coding school was opening it's doors near my hometown in Perpignan 
-        and that's when I joined 42, a one of a kind school where you learn with peers and make stuff from the get-go. I discovered the wonderful world of software engineering and I'm loving every second of it. I also have a goofy orange cat.</p>
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">
-            <img class="pepo glow parallax" src="./img/pepo.webp" loading="lazy">
-          </div>
-          <div class="back">
-            <img src="./img/goof.webp" class="pepo glow parallax" loading="lazy">
+
+    <nav class="navbar navbar-expand-lg change">
+      <div class="container">
+        <a aria-current="page" class="logo" href="/">
+          <img src="assets/img/logo.png" alt="logo" title="paloouf.github.io">
+          <h1 class="logo-name gradient-text">paloouf.github.io</h1>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link gradient-text" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link gradient-text" href="/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    </nav>
+
+
+    <div class="parallax">
+      <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/slider/unsplash-02.jpg" class="d-block w-100" alt="Image 1">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+              <h1 class="gradient-text">Software Engineer Student</h1>
+              <p class="text-white">Designs, develops, and maintains software applications, systems, and programs using programming languages and tools to meet specific user or business needs.</p>
+              <a class="btn btn-primary mt-3" href="/contact/">Get in Touch</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="contact">
-      <p>Contact Me!</p>
-        <a href="https://www.linkedin.com/in/loïc-tressens/"><img src="./img/linkedin.webp" class="social-logo" loading="lazy"></a>
-        <a href="https://github.com/Paloouf"><img src="./img/github.webp" class="social-logo" loading="lazy"></a>
-        <a href="mailto:loic.tressens@gmail.com"><img src="./img/email.webp" class="social-logo" loading="lazy"></a>
-    </div>
-  </div>
-  <div id="skills" class="skills-container">
-    <h2>Technologies</h2>
-    <ul>
-      <li class="skill-item" data-info="info1">C
-        <div class="info-box" id="info1">
-          <p>3D Game project at School 42: <a href="https://github.com/Paloouf/Cub3D" target="_blank">Cub3D</a>.</p>
-        </div>
-      </li>
-      <li class="skill-item" data-info="info2">C++
-        <div class="info-box" id="info2">
-          <p>Parser project in <a href="https://github.com/Paloouf/scop" target="_blank">C++</a> for .obj files to render in OpenGL.</p>
-        </div>
-      </li>
-      <li class="skill-item" data-info="info3">JavaScript
-        <div class="info-box" id="info3">
-          <p>Website project at School 42 with 4 teammates using <a href="https://github.com/CartelGames/ft_transcendence" target="_blank">JavaScript</a> and Three.js.</p>
-        </div>
-      </li>
-      <li class="skill-item" data-info="info4">Three.js
-        <div class="info-box" id="info4">
-          <p>This website is mostly made using <a href="https://threejs.org">Three.js</a>! Hope you enjoy it 😉</p>
-        </div>
-      </li>
-      <li class="skill-item" data-info="info5">Git and Github
-        <div class="info-box" id="info5">
-          <p>Go take a look at <a href="https://github.com/Paloouf" target="_blank">my profile</a>!😉</p>
-        </div>
-      </li>
-      <li class="skill-item" data-info="info6">Docker
-        <div class="info-box" id="info6">
-          <p>Website project at School 42 with 4 teammates using <a href="https://github.com/CartelGames/ft_transcendence" target="_blank">Docker</a> to deploy as an app.</p>
-        </div>
-      </li>
-      <li class="skill-item" data-info="info7">OpenGL
-        <div class="info-box" id="info7">
-          <p>Parser project in C++ for .obj files to render in <a href="https://github.com/Paloouf/scop" target="_blank">OpenGL</a>.</p>
-        </div>
-      </li>
-    </ul>
-    <h2>Languages</h2>
-      <ul>
-        <li>Fluent in English</li>
-        <li>French (mother tongue)</li>
-      </ul>
-    <h2>Additional Skills</h2>
-      <ul>
-        <li class="skill-item" data-info="info9">English to French Translation
-          <div class="info-box" id="info9">
-            <p>My previous professional experience in PTW had me translate and bug test languages for various AAA Games</a>.</p>
-          </div>
-        </li>
-        <li class="skill-item" data-info="info10">Team Management
-          <div class="info-box" id="info10">
-            <p>My Senior position at PTW meant I had to oversee a small team of testers during projects</a>.</p>
-          </div>
-        </li>
-      </ul>
-  </div>
-</div>
-  <div id="projects" class="hidden">
-    <h2>My Projects</h2>
-    <p>This website is a work in progress but one of my most recent projects. I'll update this list with all the stuff I'll be doing in the future. 
-      For now you can click on the github link <a href="https://github.com/Paloouf">here!</a> This will take you to my most up-to-date list.
-    </p>
-  </div>
-  <!-- Loading screen -->
-  <div id="content" style="display:none;">
-    <canvas class="webgl"></canvas>
-    <script type="importmap">
-    {
-      "imports": {
-      "three": "https://unpkg.com/three@0.153.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.153.0/examples/jsm/"
-      }
-    }
-    </script>  
-    <script type="module" src="portfolio.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  </div>
-  <div class="loading-screen" id="loadingScreen">
-    <l-grid size="75" speed="1.5" color="white"></l-grid>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/grid.js"></script>
-    <p class="loader">Loading...</p>
-</div>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Your introduction or bio here.</p>
+    </section>
+    <section id="tech-stack">
+        <h2>Technology Stack</h2>
+        <div id="sphere-container"></div>
+    </section>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
 
-  
+    </section>
+    <footer>
+        <p>&copy; 2024 . All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.5.0/dist/TagCloud.min.js"></script>   
+    <script src="js/sphere.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

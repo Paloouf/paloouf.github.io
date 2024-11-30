@@ -1,0 +1,165 @@
+/* Reset styles (if not already in reset.css) */
+body, h1, h2, p, ul, li, a, img {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* General styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background-color: #474747;
+}
+
+/* Logo container */
+nav .container {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Logo image */
+nav .logo img {
+  width: 40px; /* Adjust size as needed */
+  height: 40px;
+  margin-right: 10px; /* Space between the logo and the text */
+}
+
+.navbar .logo-name{
+  width: 210px;
+  display: inline;
+  position: absolute;
+  top: 25px;
+  font-size: x-large;
+  color: white;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-weight: 500;
+  color: #fff;
+  padding: 15px 7px;
+  margin: 10px 15px;
+}
+.container{
+  max-width: 1200px;
+}
+.navbar{
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  z-index: 999;
+  min-height: 80px;
+}
+/* Nav links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background: linear-gradient(to left, #ff007a, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav .logo-name:hover {
+  background: linear-gradient(to left, #ff007a, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-item img {
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  object-fit: cover; /* Ensure the images cover the screen */
+  object-position: center;
+}
+
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  z-index: 1; /* Place it above the image but below the text */
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%; /* Vertically center */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Adjust for perfect centering */
+  text-align: center; /* Center align text */
+  z-index: 2; /* Ensure it appears above the image */
+}
+
+.carousel-caption h1 {
+  font-size: 3rem; /* Adjust font size */
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
+.carousel-caption .btn {
+  background: transparent;
+  border-color: #fff;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #ff007a, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Make the text itself transparent */
+}
+
+#sphere-container {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+#sphere-container a {
+  color: #333;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+#sphere-container img {
+  width: 50px;          /* Adjust size of each logo */
+  height: 50px;
+  object-fit: contain;  /* Maintain aspect ratio */
+  transition: transform 0.2s ease;
+}
+
+#sphere-container img:hover {
+  transform: scale(1.2);
+}
