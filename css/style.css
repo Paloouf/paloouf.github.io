@@ -5,13 +5,22 @@ body, h1, h2, p, ul, li, a, img {
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
+  justify-content: center;
 }
 
 /* General styles */
 body {
+  color: #fff;
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  background-color: #474747;
+  background-color: #111215;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+  flex:1;
 }
 
 /* Logo container */
@@ -19,8 +28,6 @@ nav .container {
   display: flex;
   align-items: center;
 }
-
-
 
 /* Logo image */
 nav .logo img {
@@ -89,19 +96,23 @@ footer {
 }
 
 .parallax {
+  position:relative;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
-.carousel-item img {
-  height: 100vh; /* Full viewport height */
-  width: 100%;
-  object-fit: cover; /* Ensure the images cover the screen */
-  object-position: center;
+.carousel-item {
+  background-image: url('../assets/slider/unsplash-02.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Fullscreen height */
 }
 
 .carousel-item::before {
+  pointer-events: none;
   content: '';
   position: absolute;
   top: 0;
@@ -142,10 +153,131 @@ footer {
   -webkit-text-fill-color: transparent; /* Make the text itself transparent */
 }
 
+section{
+  padding-top: 10%;
+  padding-bottom: 10%;
+
+}
+/* About Section Styles */
+.about-section {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row; /* Row layout: image on the left, text on the right */
+  align-items: center; /* Vertically center align */
+  width: 80%; /* Limit the width of the container */
+  max-width: 1200px; /* Set a max width for large screens */
+}
+
+.about-image {
+  flex: 1; /* Take up equal space */
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+.about-image img {
+  width: 80%; /* Adjust image size */
+  max-width: 300px; /* Limit maximum width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10%; /* Make the image circular */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+}
+
+.about-text {
+  flex: 2; /* Take up twice the space compared to the image */
+  text-align: left; /* Align text to the right */
+  padding-left: 20px; /* Space between the text and the image */
+}
+
+.about-text h2 {
+  background: linear-gradient(to right, #ff007a, #00ffff);
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  padding: 7px 12px;
+  max-width: fit-content;
+  box-sizing: border-box;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #ffffff; /* Darker text color for readability */
+}
+
+
+/* Tech Stack Section Styles */
+.tech-stack {
+  margin-right: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.tech-stack-container {
+  display: flex; /* Flexbox layout for side-by-side alignment */
+  align-items: center; /* Vertically align items */
+  justify-content: space-around; /* Add spacing between title and sphere */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px; /* Space between items */
+}
+
+.tech-stack-container h2 {
+  flex: 1; /* Allow the title to take some space */
+  font-size: 2rem; /* Adjust font size */
+  margin: 0; /* Remove default margin */
+  text-align: left; /* Align the text to the left */
+  color: #ffffff; /* Optional: Title text color */
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column; /* Stack h2, h1, and p vertically */
+  justify-content: center; /* Center vertically within the container */
+  text-align: left; /* Align text to the left */
+  max-width: 400px; /* Limit width for better layout */
+}
+
+.text-container h2 {
+  font-size: 2rem; /* Adjust h2 size */
+}
+
+.text-container h1 {
+  font-size: 2.5rem; /* Adjust h1 size */
+  margin-top: 10px;
+  background: linear-gradient(to right, #ff007a, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}
+
+.text-container p {
+  font-size: 1rem; /* Adjust paragraph size */
+  margin-top: 10px;
+}
+
+.projects-section{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
 #sphere-container {
-  width: 500px;
-  height: 500px;
-  margin: 0 auto;
+  flex: 2; /* Allow the sphere container to take more space */
+  width: 100%; /* Adjust width */
+  max-width: 400px; /* Limit max width */
+  height: 400px; /* Set a fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content inside the sphere container */
+  margin-left: auto;
+  margin-right: auto;
 }
 #sphere-container a {
   color: #333;
@@ -162,4 +294,190 @@ footer {
 
 #sphere-container img:hover {
   transform: scale(1.2);
+}
+
+
+/* Footer Container */
+.footer {
+  position: relative;
+  background-color: #111; /* Dark background */
+  color: #fff; /* White text color */
+  padding: 40px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Space out the sections */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px;
+}
+
+/* Footer Columns */
+.footer-column {
+  flex: 1;
+  min-width: 250px; /* Minimum width for smaller screens */
+  margin: auto;
+}
+
+.footer-column h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.footer-column ul li {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.footer-column ul li i {
+  font-size: 1.5rem;
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.footer-column ul li p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Links */
+.footer-column a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.footer-column a:hover {
+  color: #00ffff; /* Optional: Hover effect for links */
+}
+
+.footer-logo{
+  width: 50px;
+  height: 50px;
+}
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 10px; /* Space between icons */
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #222;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #00ffff; /* Optional: Hover color for icons */
+}
+
+.social-icons a .icon-linkedin {
+  background-image: url('../assets/img/linkedin.webp');
+  background-size: cover;
+  background-position: center;
+  width: 70%;
+  height: 70%;
+}
+
+.social-icons a .icon-github {
+  background-image: url('../assets/img/github.webp');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Footer Text */
+.footer-column p {
+  font-size: 0.8rem;
+  color: #888; /* Subtle text color */
+}
+
+/* Contact Section */
+#contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  color: #333;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient Text for h2 */
+#contact h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #7f00ff, #00ffff); /* Purple to cyan gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+  text-align: center;
+}
+
+#contact p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Form Styling */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #333;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 1rem;
+  outline: none;
+}
+
+form input:focus, form textarea:focus {
+  border: 2px solid #7f00ff; /* Focus color */
+}
+
+form button {
+  background-color: #7f00ff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #00ffff;
+  color: #111;
 }
