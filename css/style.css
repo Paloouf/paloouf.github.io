@@ -447,17 +447,17 @@ form label {
   text-align: left;
   margin-bottom: 5px;
   font-size: 1rem;
-  color: #333;
+  color: #ffffff;
 }
 
 form input, form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  color: #333;
+  color: #1b1b1b;
   font-size: 1rem;
   outline: none;
 }
