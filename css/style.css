@@ -52,7 +52,7 @@ nav .logo img {
   margin: 10px 15px;
 }
 .container{
-  max-width: 1200px;
+   max-width: 1200px; 
 }
 .navbar{
   position: absolute;
@@ -134,17 +134,29 @@ footer {
 }
 
 .carousel-caption h1 {
-  font-size: 3rem; /* Adjust font size */
+  font-size: 3rem; 
   font-weight: bold;
+  width: 70vw;
 }
 
 .carousel-caption p {
   font-size: 1.2rem;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add text shadow */
+  width: 70vw;
 }
 .carousel-caption .btn {
   background: transparent;
   border-color: #fff;
+}
+
+.section-separator {
+  height: 2px; /* Thickness of the line */
+  width: 80%; /* Full width of the section */
+  background: linear-gradient(to right, #7f00ff, #00ffff); /* Gradient colors */
+}
+
+#right {
+  margin-left: auto;
 }
 
 .gradient-text {
@@ -156,42 +168,44 @@ footer {
 section{
   padding-top: 5%;
   padding-bottom: 5%;
+  scroll-snap-align: start;
+  scroll-snap-type: y mandatory;
 
-}
-/* About Section Styles */
+}/* General Styles */
 .about-section {
   display: flex;
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  padding: 20px; /* Add padding for better spacing */
 }
 
 .about-container {
   display: flex;
-  flex-direction: row; /* Row layout: image on the left, text on the right */
-  align-items: center; /* Vertically center align */
-  width: 80%; /* Limit the width of the container */
-  max-width: 1200px; /* Set a max width for large screens */
+  flex-direction: row; /* Default: image on the left, text on the right */
+  align-items: center; /* Vertically align items */
+  width: 80%; /* Limit container width */
+  max-width: 1200px;
 }
 
 .about-image {
-  flex: 1; /* Take up equal space */
+  flex: 1; /* Image takes up equal space */
   display: flex;
-  justify-content: center; /* Center the image horizontally */
-  align-items: center; /* Center the image vertically */
+  justify-content: center; /* Center image horizontally */
+  align-items: center; /* Center image vertically */
 }
 
 .about-image img {
-  width: 80%; /* Adjust image size */
-  max-width: 300px; /* Limit maximum width */
+  width: 80%; /* Image size */
+  max-width: 300px; /* Maximum width */
   height: auto; /* Maintain aspect ratio */
-  border-radius: 10%; /* Make the image circular */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+  border-radius: 10%; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
 
 .about-text {
-  flex: 2; /* Take up twice the space compared to the image */
-  text-align: left; /* Align text to the right */
-  padding-left: 20px; /* Space between the text and the image */
+  flex: 2; /* Text takes up twice the space compared to the image */
+  text-align: left; /* Align text to the left */
+  padding-left: 20px; /* Space between text and image */
 }
 
 .about-text h2 {
@@ -200,7 +214,8 @@ section{
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 4px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  margin-top: 20px;
   border-radius: 10px;
   padding: 7px 12px;
   max-width: fit-content;
@@ -211,9 +226,28 @@ section{
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 15px;
-  color: #ffffff; /* Darker text color for readability */
+  color: #ffffff; /* Adjust text color for readability */
 }
 
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column; /* Stack image and text vertically */
+    text-align: center; /* Center-align text for smaller screens */
+  }
+
+  .about-image {
+    margin-bottom: 20px; /* Add spacing between image and text */
+  }
+
+  .about-text {
+    padding-left: 0; /* Remove left padding */
+  }
+
+  .about-text h2 {
+    margin: 0 auto 20px; /* Center-align the heading */
+  }
+}
 
 /* Tech Stack Section Styles */
 .tech-stack {
@@ -233,6 +267,8 @@ section{
 .tech-stack-container h2 {
   flex: 1; /* Allow the title to take some space */
   font-size: 2rem; /* Adjust font size */
+  font-weight: 300;
+  letter-spacing: 5px;
   margin: 0; /* Remove default margin */
   text-align: left; /* Align the text to the left */
   color: #ffffff; /* Optional: Title text color */
@@ -480,4 +516,215 @@ form button {
 form button:hover {
   background-color: #00ffff;
   color: #111;
+}
+
+.projects-section h2{
+  padding-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: 5px;
+}
+
+
+/* Carousel Container */
+.carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Slides Container */
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease; /* Smooth slide transition */
+  width: 85%;
+}
+
+/* Single Slide */
+.carousel-slide {
+  display: flex;
+  flex: 1 0 100%; /* Full width per slide */
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  gap: 20px; /* Space between image and text */
+  opacity: 0;
+  transform: translateX(100%); /* Hide slides initially */
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  transform: translateX(0); /* Show active slide */
+}
+
+/* Image Styling */
+.carousel-slide img {
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Text Styling */
+.carousel-text {
+  width: 50%;
+  text-align: left;
+}
+
+.carousel-text h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.carousel-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Chevron Buttons */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -50px;
+  margin-right: -50px;
+}
+
+.carousel-control.left {
+  left: 55px;
+}
+
+.carousel-control.right {
+  right: 55px;
+}
+
+.carousel-control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex-direction: column; /* Stack image and text vertically */
+  }
+
+  .carousel-slide img,
+  .carousel-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .carousel-control {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px; /* Position at the bottom of the carousel */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  font-size: 2rem; /* Adjust size of the chevron */
+  color: #fff; /* White color for the chevron */
+  animation: bounce 4.5s infinite; 
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.scroll-indicator a {
+  text-decoration: none;
+  color: inherit; /* Use the color defined for .scroll-indicator */
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+.scroll-indicator i {
+  font-size: 2rem;
+  color: #fff;
+}
+.scroll-indicator a:hover {
+  animation: bounce 0.6s infinite; /* Trigger bounce animation on hover */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Back-to-Top Button Container */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  z-index: 1000;
+  visibility: hidden; /* Hidden initially */
+  opacity: 0; /* Invisible initially */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Button Style */
+.back-to-top button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+  transform: translateY(-20px);
+  outline: none;
+}
+
+.back-to-top button:focus{
+  outline: none;
+}
+
+/* Progress Ring */
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-ring svg {
+  transform: rotate(-90deg); /* Rotate for progress effect */
+}
+
+.progress-ring-circle {
+  fill: none;
+  stroke: url(#gradient-stroke); /* Progress color */
+  stroke-width: 3;
+  stroke-dasharray: 126; /* Circumference = 2 * π * radius (r=20) */
+  stroke-dashoffset: 126; /* Start at 0% progress */
+  transition: stroke-dashoffset 0.3s ease;
 }

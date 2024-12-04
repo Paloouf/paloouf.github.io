@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="description" content="Loïc Tressens is a software engineering student passionate about video games, automotive, and aerospace industries.">
+    <meta name="keywords" content="software engineering student, video games, paloouf, coding school, software development">
+    <meta name="author" content="Loïc Tressens">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loïc Tressens</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,16 +23,6 @@
           <img src="assets/img/logo.png" alt="logo" title="paloouf.github.io">
           <h1 class="logo-name gradient-text">paloouf.github.io</h1>
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link gradient-text" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link gradient-text" href="/contact/">Contact</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </nav>
 
@@ -39,15 +33,37 @@
           <div class="carousel-item active">
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
               <h1 class="gradient-text">Software Engineer Student</h1>
-              <p class="text-white">Designs, develops, and maintains software applications, systems, and programs using programming languages and tools to meet specific user or business needs.</p>
-              <a class="btn btn-primary mt-3" href="/contact/">Get in Touch</a>
+              <p class="text-white">Passionate and dedicated with a strong foundation in programming, problem-solving, and collaborative development. Eager to learn and contribute to innovative projects in diverse fields, combining creativity and technical skills to build impactful solutions.</p>
+              <a class="btn btn-primary mt-3" href="mailto:loic.tressens@gmail.com">Get in Touch</a>
             </div>
           </div>
         </div>
+        <div class="scroll-indicator">
+          <a href="#about">
+            <i class="fas fa-chevron-down"></i>
+          </a>
+        </div>
       </div>
     </div>
+    <div class="section-separator"></div>
 
-
+    <div id="back-to-top" class="back-to-top">
+      <div class="progress-ring">
+        <svg width="50" height="50">
+          <!-- Define Gradient -->
+          <defs>
+            <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="cyan" />
+              <stop offset="100%" stop-color="purple" />
+            </linearGradient>
+          </defs>
+          <!-- Circle -->
+          <circle class="progress-ring-circle" cx="25" cy="25" r="20"></circle>
+        </svg>
+      </div>
+      <button>&#129173;</button>
+    </div>
+    
     <section id="about" class="about-section">
       <div class="about-container">
         <div class="about-image">
@@ -55,13 +71,16 @@
         </div>
         <div class="about-text">
           <h2>About Me</h2>
-          <h3>Loïc Tressens</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod turpis vitae nunc dictum fermentum. Sed facilisis dapibus justo.</p>
-          <p>Curabitur consequat velit id purus pulvinar, sed gravida nisl pharetra. Quisque ut diam eget quam fermentum pellentesque vel nec lorem.</p>
-        </div>
+          <h3>Hi there!</h3>
+          <p>I'm Loïc, a Software Dev in training!<br>
+            I've always been drawn to creative and innovative industries, especially the exciting worlds of video games, automotive, and aerospace. Whether it’s racing teams or cutting-edge car and plane manufacturers, working on cool projects that push boundaries is what excites me most.<br><br>
+            But my journey to software engineering wasn’t exactly linear. I first dived into an Economy and Management Master’s program, only to realize that selling things just wasn’t my thing. So, I took a gap year in the UK, and ended up working for an awesome company specializing in video game Localization and Quality Assurance. I had an amazing time testing games, fixing bugs, and collaborating with developers to tackle challenges creatively. It was such a blast!<br><br>
+            When I returned to France, I stumbled upon a unique opportunity—a coding school called 42 opening up near my hometown in Perpignan. It’s a one-of-a-kind place where there are no teachers or traditional classes; instead, you learn by working on real projects alongside peers. That’s where I discovered the fascinating world of software engineering, and honestly, I’ve been hooked ever since.
+            Now, I’m all about combining creativity and technical skills to build amazing things. Whether it’s developing software, diving into game development, or exploring the world of web development, I’m ready to tackle exciting challenges and keep learning every step of the way.</p>
       </div>
     </section>
 
+    <div class="section-separator" id="right"></div>
 
     <section id="tech-stack" class="tech-stack">
       <div class="tech-stack-container">
@@ -73,12 +92,46 @@
         <div id="sphere-container"></div>
       </div>
     </section>
+
+    <div class="section-separator"></div>
+
     <section id="projects" class="projects-section">
       <h2>Projects</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum saepe ipsam dolorum omnis earum, laboriosam quidem dolores sed non aperiam! Quisquam esse veniam minima laborum soluta, similique eveniet praesentium laudantium.</p>
+      <div class="carousel">
+        <!-- Left Chevron -->
+        <button class="carousel-control left" onclick="prevSlide()">&#x276E;</button>
+        
+        <!-- Carousel Slides -->
+        <div class="carousel-slides">
+          <div class="carousel-slide active">
+            <img src="https://github.com/Paloouf/scop/raw/main/scopsuzanne.gif" alt="scop">
+            <div class="carousel-text">
+              <h3>scop</h3>
+              <p>3D Renderer of .obj files with OpenGL. Custom parser coded in C++ with custom graphical pipeline.</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://github.com/Paloouf/Cub3D/raw/master/cubedd.gif" alt="Cub3D">
+            <div class="carousel-text">
+              <h3>Cub3D</h3>
+              <p>3D Game inspired by Wolfenstein3D. Used Raycasting techniques. Also designed and implemented gameplay elements with an interactive menu in C.</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://github.com/Paloouf/FdF/raw/main/fdf-gif.gif" alt="Cub3D">
+            <div class="carousel-text">
+              <h3>FdF</h3>
+              <p>Stands for Fil de Fer (Iron wire), parsed and modeled a given map with C language.</p>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Right Chevron -->
+        <button class="carousel-control right" onclick="nextSlide()">&#x276F;</button>
+      </div>
     </section>
 
-
+    <div class="section-separator" id="right"></div>
 
     <footer class="footer">
       <div class="footer-container">
@@ -104,14 +157,14 @@
           </ul>
         </div>
     
-        <!-- Links Section -->
+        <!-- Links Section
         <div class="footer-column">
           <h3>Links</h3>
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/contact/">Contact</a></li>
           </ul>
-        </div>
+        </div> -->
     
         <!-- Social Icons Section -->
         <div class="footer-column">
